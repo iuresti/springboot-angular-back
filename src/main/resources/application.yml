@@ -7,7 +7,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
-
+  mvc:
+    locale: es_MX
 logging:
   level:
     org.hibernate.SQL: DEBUG
+
