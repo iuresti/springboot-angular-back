@@ -1,16 +1,23 @@
 /* Populate tabla clients */
-IF EXISTS SELECT * FROM clients THEN
-BEGIN
-INSERT INTO clients (name, last_name, email, created_at) VALUES('Andrés', 'Guzmán', 'profesor@bolsadeideas.com', '2018-01-01');
-INSERT INTO clients (name, last_name, email, created_at) VALUES('Mr. John', 'Doe', 'john.doe@gmail.com', '2018-01-02');
-INSERT INTO clients (name, last_name, email, created_at) VALUES('Linus', 'Torvalds', 'linus.torvalds@gmail.com', '2018-01-03');
-INSERT INTO clients (name, last_name, email, created_at) VALUES('Rasmus', 'Lerdorf', 'rasmus.lerdorf@gmail.com', '2018-01-04');
-INSERT INTO clients (name, last_name, email, created_at) VALUES('Erich', 'Gamma', 'erich.gamma@gmail.com', '2018-02-01');
-INSERT INTO clients (name, last_name, email, created_at) VALUES('Richard', 'Helm', 'richard.helm@gmail.com', '2018-02-10');
-INSERT INTO clients (name, last_name, email, created_at) VALUES('Ralph', 'Johnson', 'ralph.johnson@gmail.com', '2018-02-18');
-INSERT INTO clients (name, last_name, email, created_at) VALUES('John', 'Vlissides', 'john.vlissides@gmail.com', '2018-02-28');
-INSERT INTO clients (name, last_name, email, created_at) VALUES('Dr. James', 'Gosling', 'james.gosling@gmail.com', '2018-03-03');
-INSERT INTO clients (name, last_name, email, created_at) VALUES('Magma', 'Lee', 'magma.lee@gmail.com', '2018-03-04');
-INSERT INTO clients (name, last_name, email, created_at) VALUES('Tornado', 'Roe', 'tornado.roe@gmail.com', '2018-03-05');
-INSERT INTO clients (name, last_name, email, created_at) VALUES('Jade', 'Doe', 'jane.doe@gmail.com', '2018-03-06');
-END
+
+INSERT INTO regions (id, name) VALUES (1, 'Sudamérica');
+INSERT INTO regions (id, name) VALUES (2, 'Centroamérica');
+INSERT INTO regions (id, name) VALUES (3, 'Norteamérica');
+INSERT INTO regions (id, name) VALUES (4, 'Europa');
+INSERT INTO regions (id, name) VALUES (5, 'Asia');
+INSERT INTO regions (id, name) VALUES (6, 'Africa');
+INSERT INTO regions (id, name) VALUES (7, 'Oceanía');
+INSERT INTO regions (id, name) VALUES (8, 'Antártida');
+
+INSERT INTO clients (name, last_name, email, created_at, region_id) VALUES('Andrés', 'Guzmán', 'profesor@bolsadeideas.com', '2018-01-01', 1);
+INSERT INTO clients (name, last_name, email, created_at, region_id) VALUES('Mr. John', 'Doe', 'john.doe@gmail.com', '2018-01-02', 1);
+INSERT INTO clients (name, last_name, email, created_at, region_id) VALUES('Linus', 'Torvalds', 'linus.torvalds@gmail.com', '2018-01-03', 2);
+INSERT INTO clients (name, last_name, email, created_at, region_id) VALUES('Rasmus', 'Lerdorf', 'rasmus.lerdorf@gmail.com', '2018-01-04', 3);
+INSERT INTO clients (name, last_name, email, created_at, region_id) VALUES('Erich', 'Gamma', 'erich.gamma@gmail.com', '2018-02-01', 4);
+INSERT INTO clients (name, last_name, email, created_at, region_id) VALUES('Richard', 'Helm', 'richard.helm@gmail.com', '2018-02-10', 5);
+INSERT INTO clients (name, last_name, email, created_at, region_id) VALUES('Ralph', 'Johnson', 'ralph.johnson@gmail.com', '2018-02-18', 6);
+INSERT INTO clients (name, last_name, email, created_at, region_id) VALUES('John', 'Vlissides', 'john.vlissides@gmail.com', '2018-02-28', 7);
+INSERT INTO clients (name, last_name, email, created_at, region_id) VALUES('Dr. James', 'Gosling', 'james.gosling@gmail.com', '2018-03-03', 8);
+INSERT INTO clients (name, last_name, email, created_at, region_id) VALUES('Magma', 'Lee', 'magma.lee@gmail.com', '2018-03-04', 7);
+INSERT INTO clients (name, last_name, email, created_at, region_id) VALUES('Tornado', 'Roe', 'tornado.roe@gmail.com', '2018-03-05', 6);
+INSERT INTO clients (name, last_name, email, created_at, region_id) VALUES('Jade', 'Doe', 'jane.doe@gmail.com', '2018-03-06', 5);
