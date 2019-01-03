@@ -15,6 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Email;
 
 @Entity
 @Table(name = "users")
@@ -32,10 +33,19 @@ public class User implements Serializable {
     @Column(length = 100)
     private String password;
 
+    @Column(length = 100)
+    private String name;
+
+    @Column(length = 100, name = "last_name")
+    private String lastName;
+
+    @Email
+    private String email;
+
     private Boolean enabled;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(joinColumns = @JoinColumn(name = "user_id"),
+    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"),
             uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "role_id"}))
     private List<Role> roles;
@@ -70,6 +80,30 @@ public class User implements Serializable {
 
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public List<Role> getRoles() {
