@@ -15,9 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.iuresti.learning.backendclients.models.User;
 import com.iuresti.learning.backendclients.repository.IUserDAO;
+import com.iuresti.learning.backendclients.services.IUserService;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService implements UserDetailsService, IUserService {
 
     private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
@@ -42,5 +43,10 @@ public class UserService implements UserDetailsService {
                 .stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
 
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        return userDAO.findByUsername(username);
     }
 }
