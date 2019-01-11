@@ -49,6 +49,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Bean
     public AccessTokenConverter accessTokenConverter() {
-        return new JwtAccessTokenConverter();
+        JwtAccessTokenConverter accessTokenConverter = new JwtAccessTokenConverter();
+
+        accessTokenConverter.setSigningKey("test.key.12345");
+
+        return accessTokenConverter;
     }
 }
