@@ -51,7 +51,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public AccessTokenConverter accessTokenConverter() {
         JwtAccessTokenConverter accessTokenConverter = new JwtAccessTokenConverter();
 
-        accessTokenConverter.setSigningKey("test.key.12345");
+        accessTokenConverter.setSigningKey(JwtConfig.PRIVATE_KEY);
+        accessTokenConverter.setVerifierKey(JwtConfig.PUBLIC_KEY);
 
         return accessTokenConverter;
     }
