@@ -46,6 +46,7 @@ public class UserService implements UserDetailsService, IUserService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public User findByUsername(String username) {
         return userDAO.findByUsername(username);
     }

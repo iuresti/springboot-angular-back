@@ -40,6 +40,7 @@ public class User implements Serializable {
     private String lastName;
 
     @Email
+    @Column(unique = true)
     private String email;
 
     private Boolean enabled;

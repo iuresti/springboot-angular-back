@@ -20,6 +20,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -56,6 +57,7 @@ public class ClientController {
         return clientService.findAll();
     }
 
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @GetMapping("{id}")
     public ResponseEntity<Client> findById(@PathVariable Long id) {
 
@@ -63,6 +65,7 @@ public class ClientController {
     }
 
     @PostMapping
+    @Secured({"ROLE_ADMIN"})
     public ResponseEntity<?> save(@Valid @RequestBody Client client, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
@@ -82,12 +85,14 @@ public class ClientController {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
+    @Secured({"ROLE_ADMIN"})
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
     public Client update(@RequestBody Client client) {
         return clientService.save(client);
     }
 
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @PutMapping("/{id}/image")
     @ResponseStatus(HttpStatus.OK)
     public Client updateImage(@RequestParam MultipartFile file, @PathVariable long id) throws IOException {
@@ -107,6 +112,7 @@ public class ClientController {
         return new ResponseEntity<>(resource, httpHeaders, HttpStatus.OK);
     }
 
+    @Secured({"ROLE_ADMIN"})
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
