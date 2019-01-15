@@ -21,7 +21,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.iuresti.learning.backendclients.models.Client;
+import com.iuresti.learning.backendclients.models.Folio;
 import com.iuresti.learning.backendclients.repository.IClientDAO;
+import com.iuresti.learning.backendclients.repository.IFolioDAO;
 import com.iuresti.learning.backendclients.services.IClientService;
 
 @Service
@@ -31,6 +33,9 @@ public class ClientService implements IClientService {
 
     @Autowired
     private IClientDAO clientDAO;
+
+    @Autowired
+    private IFolioDAO folioDAO;
 
     @Override
     @Transactional(readOnly = true)
@@ -95,6 +100,26 @@ public class ClientService implements IClientService {
         }
 
         return clientDAO.save(client);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public Folio findFolioById(Long id) {
+        return folioDAO.findById(id).orElse(null);
+    }
+
+    @Transactional
+    @Override
+    public Folio saveFolio(Folio folio) {
+        return folioDAO.save(folio);
+
+    }
+
+    @Transactional
+    @Override
+    public void deleteFolioById(Long id) {
+        folioDAO.deleteById(id);
+
     }
 
     private void removeImage(Client client, String previousImage) {

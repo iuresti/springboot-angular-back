@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.iuresti.learning.backendclients.models.Client;
+import com.iuresti.learning.backendclients.models.Folio;
 
 public interface IClientService {
 
@@ -21,4 +22,10 @@ public interface IClientService {
     void delete(Long id);
 
     Client updateImage(long id, InputStream is, String originalFilename);
+
+    Folio findFolioById(Long id);
+
+    void deleteFolioById(Long id);
+
+    Folio saveFolio(Folio folio);
 }
