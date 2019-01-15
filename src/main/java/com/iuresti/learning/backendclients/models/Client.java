@@ -1,8 +1,11 @@
 package com.iuresti.learning.backendclients.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -55,6 +59,14 @@ public class Client implements Serializable {
     @JoinColumn(name = "region_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Region region;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "client", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private List<Folio> folios;
+
+    public Client() {
+        folios = new ArrayList<>();
+    }
 
     public Long getId() {
         return id;
@@ -110,5 +122,13 @@ public class Client implements Serializable {
 
     public void setRegion(Region region) {
         this.region = region;
+    }
+
+    public List<Folio> getFolios() {
+        return folios;
+    }
+
+    public void setFolios(List<Folio> folios) {
+        this.folios = folios;
     }
 }

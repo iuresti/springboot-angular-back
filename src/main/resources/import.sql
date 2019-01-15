@@ -31,3 +31,23 @@ INSERT INTO roles (name) VALUES ('ROLE_ADMIN');
 INSERT INTO users_roles (user_id, role_id) VALUES (1, 1);
 INSERT INTO users_roles (user_id, role_id) VALUES (2, 2);
 INSERT INTO users_roles (user_id, role_id) VALUES (2, 1);
+
+INSERT INTO products (name, prize, created_at) VALUES ('Panasonic Pantalla LCD', 10000, NOW());
+INSERT INTO products (name, prize, created_at) VALUES ('Sony Notebook Z110', 25000, NOW());
+INSERT INTO products (name, prize, created_at) VALUES ('HP OfficeJet Pro8710', 4580, NOW());
+INSERT INTO products (name, prize, created_at) VALUES ('Bocina Bose Bluetooth', 4000, NOW());
+
+INSERT INTO folios(description, observation, created_at, client_id) VALUES ('Factura 1', null, NOW(), 1);
+INSERT INTO folios(description, observation, created_at, client_id) VALUES ('Factura 2', null, NOW(), 1);
+INSERT INTO folios(description, observation, created_at, client_id) VALUES ('Factura 3', null, NOW(), 2);
+
+INSERT INTO folio_items (folio_id, quantity, product_id) VALUES (1, 1, 1);
+INSERT INTO folio_items (folio_id, quantity, product_id) VALUES (1, 2, 2);
+INSERT INTO folio_items (folio_id, quantity, product_id) VALUES (1, 1, 4);
+
+INSERT INTO folio_items (folio_id, quantity, product_id) VALUES (2, 2, 2);
+INSERT INTO folio_items (folio_id, quantity, product_id) VALUES (2, 2, 3);
+INSERT INTO folio_items (folio_id, quantity, product_id) VALUES (2, 1, 4);
+
+INSERT INTO folio_items (folio_id, quantity, product_id) VALUES (3, 1, 1);
+INSERT INTO folio_items (folio_id, quantity, product_id) VALUES (3, 1, 4);
