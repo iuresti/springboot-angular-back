@@ -27,17 +27,11 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, length = 20)
+    @Column(unique = true, length = 200)
     private String username;
 
-    @Column(length = 100)
-    private String password;
-
-    @Column(length = 100)
+    @Column(length = 200)
     private String name;
-
-    @Column(length = 100, name = "last_name")
-    private String lastName;
 
     @Email
     @Column(unique = true)
@@ -45,7 +39,9 @@ public class User implements Serializable {
 
     private Boolean enabled;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {
+            CascadeType.REMOVE, CascadeType.REFRESH
+    })
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"),
             uniqueConstraints = @UniqueConstraint(columnNames = {"user_id", "role_id"}))
@@ -67,14 +63,6 @@ public class User implements Serializable {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public Boolean getEnabled() {
         return enabled;
     }
@@ -89,14 +77,6 @@ public class User implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getEmail() {

@@ -25,7 +25,7 @@ public class AditionalJWTInformation implements TokenEnhancer {
         User user = userService.findByUsername(oAuth2Authentication.getName());
 
         info.put("email", user.getEmail());
-        info.put("name", user.getUsername());
+        info.put("name", user.getName());
 
         ((DefaultOAuth2AccessToken) oAuth2AccessToken).setAdditionalInformation(info);
 
